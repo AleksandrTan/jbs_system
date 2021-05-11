@@ -1,0 +1,10 @@
+# Project exclude paths
+/venv/
+loging.log
+loging_fbi.log
+.idea
+supportingmodule/IGUtils.class
+tests/IGUtils.java
+tests/IGUtils.class
+tests/debug_data.py
+.env
