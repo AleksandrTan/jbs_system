@@ -1,0 +1,61 @@
+{% load arithmetic list_operations %}
+            {% with '1 2 3 4 5'|make_list_of_integers as num_list url_var='' %}
+                <ul class="pagination">
+                {% if page_obj.has_previous %}
+                  <li><a href="{% url url_var  %}page/{{ page_obj.previous_page_number }}/?{{ request_get }}">&laquo;</a></li>
+                {% else %}
+                  <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% if page_obj.paginator.num_pages > 7 %}
+                        {% if page_obj.number < 5 %}
+                            {% for num in num_list %}
+                                {% if page_obj.number == num %}
+                                    <li class="active"><span>{{ num }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                    <li><a href="{% url url_var %}page/{{ num }}/?{{ request_get }}">{{ num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.number < page_obj.paginator.num_pages %}
+                                    <li class="disabled"><span>...<span class="sr-only">(current)</span></span></li>
+                                    <li><a href="{% url url_var   %}page/{{ page_obj.paginator.num_pages }}/?{{ request_get }}">{{ page_obj.paginator.num_pages }}</a></li>
+                            {% endif %}
+                        {% elif page_obj.number > page_obj.paginator.num_pages|subtract:4 %}
+                            <li><a href="{% url url_var   %}page/1/?{{ request_get }}">1</a></li>
+                            <li class="disabled"><span>...<span class="sr-only">(current)</span></span></li>
+                            {% for num in num_list reversed %}
+                                {% if page_obj.number == page_obj.paginator.num_pages|subtract:num %}
+                                    <li class="active"><span>{{ page_obj.number }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                    <li><a href="{% url url_var   %}page/{{ page_obj.paginator.num_pages|subtract:num }}/?{{ request_get }}">{{ page_obj.paginator.num_pages|subtract:num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.number == page_obj.paginator.num_pages %}
+                                <li class="active"><span>{{ page_obj.number }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="{% url url_var  %}page/{{ page_obj.paginator.num_pages }}/?{{ request_get }}">{{ page_obj.paginator.num_pages }}</a></li>
+                            {% endif %}
+                        {% else %}
+                            <li><a href="{% url url_var  %}page/1/?{{ request_get }}">1</a></li>
+                            <li class="disabled"><span>...<span class="sr-only">(current)</span></span></li>
+                            <li><a href="{% url url_var  %}page/{{ page_obj.number|subtract:1 }}/?{{ request_get }}">{{ page_obj.number|subtract:1 }}</a></li>
+                            <li class="active"><span>{{ page_obj.number }} <span class="sr-only">(current)</span></span></li>
+                            <li><a href="{% url url_var  %}page/{{ page_obj.number|add:1 }}/?{{ request_get }}">{{ page_obj.number|add:1 }}</a></li>
+                            <li class="disabled"><span>...<span class="sr-only">(current)</span></span></li>
+                            <li><a href="{% url url_var  %}page/{{ page_obj.paginator.num_pages }}/?{{ request_get }}">{{ page_obj.paginator.num_pages }}</a></li>
+                        {% endif %}
+                {% else %}
+                    {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="{% url url_var %}page/{{ i }}/?{{ request_get }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if page_obj.has_next %}
+                  <li><a href="{% url url_var %}page/{{ page_obj.next_page_number }}/?{{ request_get }}">&raquo;</a></li>
+                {% else %}
+                  <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+                </ul>
+            {% endwith %}
