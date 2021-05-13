@@ -14,8 +14,8 @@ class RedisPub:
     def connector(self):
         return self.redis_connector
 
-    def set_data(self, i):
-        self.connector.publish("data-for-power-my", json.dumps({"status": True, "cmd": f"start_parser - {i}"}))
+    def set_data(self, num):
+        self.connector.publish("data-for-parser", json.dumps({"status": True, "cmd": f"start_parser", "num": f"{num}"}))
 
     def get_data(self):
         return self.connector.get("Alex")
@@ -27,4 +27,4 @@ if __name__ == "__main__":
     while i < 10:
         pub.set_data(i)
         i += 1
-        time.sleep(2)
+        time.sleep(10)
