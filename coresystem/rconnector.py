@@ -1,3 +1,5 @@
+import json
+
 import pika
 
 import config
@@ -12,11 +14,17 @@ class RabbitWorker:
     def sender(self, data):
         self.channel.queue_declare(queue="target")
         self.channel.basic_publish(exchange='', routing_key='target', body=data)
-        print(" [x] Sent 'Hello World!'")
+        print(" [x] Sent 'Hello World 1!'")
         self.channel.close()
         self.connection.close()
 
 
 if __name__ == "__main__":
     worker = RabbitWorker()
-    worker.sender("Hello Alex 3500!!!")
+    message = json.dumps(
+        {
+            "status": True,
+            "link": "https://www.careerbuilder.com/job/JD68096636KLHPD352T",
+        }
+    )
+    worker.sender(message)
