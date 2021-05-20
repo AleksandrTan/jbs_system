@@ -21,10 +21,19 @@ class RabbitWorker:
 
 if __name__ == "__main__":
     worker = RabbitWorker()
+    # message = json.dumps(
+    #     {
+    #         "status": True,
+    #         "link": "https://www.careerbuilder.com/job/JD68096636KLHPD352T",
+    #         "order_id": 3500
+    #     }
+    # )
+
     message = json.dumps(
         {
             "status": True,
-            "link": "https://www.careerbuilder.com/job/JD68096636KLHPD352T",
+            "link": "http://127.0.0.1:8000/mspanel/testpage/",
+            "order_id": 3500
         }
     )
     worker.sender(message)
