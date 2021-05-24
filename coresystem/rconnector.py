@@ -33,7 +33,11 @@ if __name__ == "__main__":
         {
             "status": True,
             "link": "http://127.0.0.1:8000/mspanel/testpage/",
-            "order_id": 3500
+            "order_id": 3500,
+            "file_path": "http://127.0.0.1:8000/filedownload/",
+            "name": "Alex",
+            "last_name": "Tan",
+            "email": "test@gmail.com"
         }
     )
     worker.sender(message)
