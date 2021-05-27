@@ -18,9 +18,7 @@ class SaveOrder(BaseAdminView, CreateView):
     def post(self, request, *args, **kwargs):
         order_form = OrderForm(request.POST, request.FILES)
         if order_form.is_valid():
-            print(3500)
             order_form.save()
             return redirect('homeadmin')
         else:
-            print(4000)
             return render(request, 'botwork/create_task.html', {"form": order_form})
