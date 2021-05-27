@@ -37,7 +37,15 @@ if __name__ == "__main__":
             "file_path": "http://127.0.0.1:8000/filedownload/",
             "name": "Alex",
             "last_name": "Tan",
-            "email": "test@gmail.com"
+            "email": "test@gmail.com",
+            "proxy": {
+                "proxy_id": 1,
+                "host": "138.219.173.58",
+                "port": 8000,
+                "protocol": "http",
+                "username": '2DxLL0',
+                "password": 'fwcZsa'
+            }
         }
     )
     worker.sender(message)

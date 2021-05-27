@@ -13,5 +13,5 @@ urlpatterns = [
     path('', MainView.as_view(), name='homeadmin'),
     path('testpage/', TestView.as_view(), name="test_page"),
     path('testform/', TestFormView.as_view(), name="test_form"),
-    path('bot/create_task', CreateTaskView.as_view(), name="create_task")
+    path('bot/create_task/', CreateTaskView.as_view(), name="create_task")
 ]
