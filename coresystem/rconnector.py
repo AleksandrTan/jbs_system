@@ -1,5 +1,4 @@
 import json
-
 import pika
 
 import config
@@ -21,14 +20,6 @@ class RabbitWorker:
 
 if __name__ == "__main__":
     worker = RabbitWorker()
-    # message = json.dumps(
-    #     {
-    #         "status": True,
-    #         "link": "https://www.careerbuilder.com/job/JD68096636KLHPD352T",
-    #         "order_id": 3500
-    #     }
-    # )
-
     message = json.dumps(
         {
             "status": True,
