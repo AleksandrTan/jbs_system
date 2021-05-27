@@ -25,6 +25,7 @@ class SaveOrder(BaseAdminView, CreateView):
             print(order.id)
             # send message task for worker in RabbitMQ
             self.send_message(order)
+            print(order.file_mailing.url, 3600)
             return redirect('homeadmin')
         else:
             return render(request, 'botwork/create_task.html', {"form": order_form})
@@ -36,14 +37,14 @@ class SaveOrder(BaseAdminView, CreateView):
                 "status": True,
                 "target_link": order.target_link,
                 "order_id": order.id,
-                "file_mailing": order.file_mailing.path,
+                "file_mailing": order.file_mailing.url,
                 "user_name": order.user_name,
                 "last_name": order.last_name,
                 "email": order.email,
                 "proxy": {
                     "proxy_id": 1,
                     "host": "138.219.173.58",
-                    "port": 8000,
+                    "port": 0,
                     "protocol": "http",
                     "username": '2DxLL0',
                     "password": 'fwcZsa'
