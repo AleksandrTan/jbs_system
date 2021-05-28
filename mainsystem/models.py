@@ -14,4 +14,5 @@ class Order(models.Model):
     all_links = models.SmallIntegerField(default=0)
     send_links = models.SmallIntegerField(default=0)
     fail_links = models.SmallIntegerField(default=0)
+    message = models.TextField(default='', blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)

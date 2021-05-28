@@ -16,7 +16,7 @@ urlpatterns = [
     path('bot/create_task/', CreateTaskPageView.as_view(), name="create_task"),
     path('bot/create/', SaveOrder.as_view(), name="save_order"),
     path('bot/get_file/', send_file, name="send_file"),
-    path('api/order/<str:order_id>/done/', OrderFail.as_view(), name="order_done"),
+    path('api/order/<str:order_id>/fail/', OrderFail.as_view(), name="order_done"),
 
     # ======================================= TEST urls ==============================================================
     path('testpage/', TestView.as_view(), name="test_page"),

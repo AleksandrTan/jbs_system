@@ -8,7 +8,6 @@ class OrderFail(APIView):
     def post(self, request, *args, **kwargs):
         data_response = dict()
         OrderWork.update_order(kwargs["order_id"], request.data)
-
         data_response["status"] = True
 
-        return Response(data_response, headers={'Cache-Control': 'no-cache'})
+        return Response(data_response)
