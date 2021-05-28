@@ -11,7 +11,7 @@ class OrderWork:
             return {"status": False}
 
     @staticmethod
-    def update_order(order_id, data):
+    def update_order_fail(order_id, data):
         data_order = OrderWork.get_single_order(order_id)
         if not data_order["status"]:
             return False
