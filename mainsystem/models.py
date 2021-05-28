@@ -7,6 +7,7 @@ class Order(models.Model):
     last_name = models.CharField(max_length=500)
     email = models.CharField(max_length=500)
     status = models.BooleanField(default=False)
+    status_order = models.CharField(default="create", max_length=500)
     target_link = models.CharField(max_length=500, default='', blank=True)
     file_mailing = models.FileField(upload_to="files_mailing",
                                     validators=[FileExtensionValidator(['docx', 'doc', 'rtf', 'txt', 'pdf'],
