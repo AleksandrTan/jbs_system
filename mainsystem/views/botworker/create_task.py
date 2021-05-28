@@ -17,7 +17,9 @@ class CreateTaskPageView(BaseAdminView, TemplateView):
 
 
 class SaveOrder(BaseAdminView, CreateView):
-
+    """
+    Save new order, send task in RabbitMQ
+    """
     def post(self, request, *args, **kwargs):
         order_form = OrderForm(request.POST, request.FILES)
         if order_form.is_valid():
@@ -25,7 +27,6 @@ class SaveOrder(BaseAdminView, CreateView):
             print(order.id)
             # send message task for worker in RabbitMQ
             self.send_message(order)
-            print(order.file_mailing.url, 3600)
             return redirect('homeadmin')
         else:
             return render(request, 'botwork/create_task.html', {"form": order_form})
