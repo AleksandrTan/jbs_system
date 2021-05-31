@@ -25,3 +25,19 @@ class Order(models.Model):
     fail_links = models.SmallIntegerField(default=0)
     message = models.TextField(default='', blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+
+class TestData(models.Model):
+    firstname = models.CharField(max_length=500)
+    lastname = models.CharField(max_length=500)
+    email = models.CharField(max_length=500)
+    cv_data = models.CharField(max_length=500)
+    cv_file_name = models.CharField(max_length=500)
+    ai_resume_builder = models.BooleanField(default=False)
+    dropbox_cv_url = models.CharField(max_length=500, default='', blank=True)
+    upload_file = models.FileField(upload_to="files_test",
+                                   validators=[FileExtensionValidator(['docx', 'doc', 'rtf', 'txt', 'pdf'],
+                                                                      message="wrong file extension")])
+    copy_paste = models.CharField(max_length=500)
+    authenticity_token = models.CharField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)

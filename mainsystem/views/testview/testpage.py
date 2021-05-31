@@ -1,4 +1,6 @@
 from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView
+from mainsystem.forms.test_form import TestForm
 from django.http import HttpResponse
 from django.http import (HttpResponse, HttpResponseBadRequest, HttpResponseForbidden)
 
@@ -12,6 +14,16 @@ class TestView(TemplateView):
 
 class TestFormView(TemplateView):
     template_name = 'test/test_form.html'
+    #
+    # def get(self, request, *args, **kwargs):
+    #     return HttpResponseBadRequest(content="Fail")
 
-    def get(self, request, *args, **kwargs):
-        return HttpResponseBadRequest(content="Fail")
+
+class TestDataView(CreateView):
+    def post(self, request, *args, **kwargs):
+        order_form = TestForm(request.POST, request.FILES)
+        if order_form.is_valid():
+            order_form.save()
+            return HttpResponseBadRequest(content="Fail")
+        else:
+            return HttpResponse()

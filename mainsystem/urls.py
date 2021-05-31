@@ -26,8 +26,6 @@ urlpatterns = [
     path('bot/get_file/', send_file, name="send_file"),
     path('api/order/<str:order_id>/fail/', OrderFail.as_view(), name="order_done"),
 
-
-
     # ======================================= TEST urls ==============================================================
     path('testpage/', TestView.as_view(), name="test_page"),
     path('testform/', TestFormView.as_view(), name="test_form"),
