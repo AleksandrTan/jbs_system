@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from mainsystem.views.startpage import MainView
-from mainsystem.views.testview.testpage import TestView, TestFormView
+from mainsystem.views.testview.testpage import TestView, TestFormView, TestDataSave
 from mainsystem.views.botworker.create_task import CreateTaskPageView, SaveOrder
 from mainsystem.views.botworker.get_file import send_file
 from mainsystem.views.apiworker.tasks_result import OrderFail
@@ -29,4 +29,5 @@ urlpatterns = [
     # ======================================= TEST urls ==============================================================
     path('testpage/', TestView.as_view(), name="test_page"),
     path('testform/', TestFormView.as_view(), name="test_form"),
+    path('apply/j2r1zp6g5s3b9nk4h73/submit', TestDataSave.as_view(), name="save_form"),
 ]

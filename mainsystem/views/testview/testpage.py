@@ -19,11 +19,12 @@ class TestFormView(TemplateView):
     #     return HttpResponseBadRequest(content="Fail")
 
 
-class TestDataView(CreateView):
+class TestDataSave(CreateView):
     def post(self, request, *args, **kwargs):
         order_form = TestForm(request.POST, request.FILES)
         if order_form.is_valid():
             order_form.save()
-            return HttpResponseBadRequest(content="Fail")
-        else:
             return HttpResponse()
+        else:
+            print(order_form.errors)
+            return HttpResponseBadRequest(content="DFail")
