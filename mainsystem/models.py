@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Portal(models.Model):
-    alias = models.CharField(max_length=500)
+    alias = models.CharField(max_length=500, unique=True)
     name = models.CharField(max_length=500)
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)

@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Add a new portal</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="post" enctype="multipart/form-data" action="{% url 'create_portal' %}">{% csrf_token %}
+                <div class="card-body">
+                <div class="form-group">
+                    <label for="targetLink">Alias</label>
+                    <input type="text" class="form-control form-control-border" id="targetLink" placeholder="Enter alias(unique)"
+                           name="alias" value="{% if form.alias %} {{ form.alias.value }} {% endif %}" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="userName">Name</label>
+                    <input type="text" class="form-control form-control-border" id="userName" placeholder="Enter name"
+                           name="name" value="{% if form.name %} {{ form.name.value }} {% endif %}" required>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+{% endblock %}

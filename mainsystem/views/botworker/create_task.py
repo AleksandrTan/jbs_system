@@ -19,6 +19,7 @@ class CreateTaskPageView(BaseAdminView, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(CreateTaskPageView, self).get_context_data()
         context["portals"] = PortalWork.get_all()
+        return context
 
 
 class SaveOrder(BaseAdminView, CreateView):
