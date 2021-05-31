@@ -7,6 +7,7 @@ from django.shortcuts import redirect, render
 from mainsystem.views.basepage import BaseAdminView
 from mainsystem.forms.order_form import OrderForm
 from coresystem.rconnector import RabbitWorker
+from mainsystem.modelswork.portal_work import PortalWork
 
 
 class CreateTaskPageView(BaseAdminView, TemplateView):
@@ -14,6 +15,10 @@ class CreateTaskPageView(BaseAdminView, TemplateView):
     Get page for add new task
     """
     template_name = 'botwork/create_task.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateTaskPageView, self).get_context_data()
+        context["portals"] = PortalWork.get_all()
 
 
 class SaveOrder(BaseAdminView, CreateView):

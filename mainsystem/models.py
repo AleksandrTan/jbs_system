@@ -2,7 +2,15 @@ from django.core.validators import FileExtensionValidator
 from django.db import models
 
 
+class Portal(models.Model):
+    alias = models.CharField(max_length=500)
+    name = models.CharField(max_length=500)
+    is_active = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+
 class Order(models.Model):
+    portal = models.ForeignKey(Portal, on_delete=models.SET_NULL, null=True)
     user_name = models.CharField(max_length=500)
     last_name = models.CharField(max_length=500)
     email = models.CharField(max_length=500)

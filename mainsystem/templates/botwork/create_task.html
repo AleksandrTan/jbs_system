@@ -14,6 +14,16 @@
               <form method="post" enctype="multipart/form-data" action="{% url 'save_order' %}">{% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
+                  <label for="exampleSelectRounded0">Portals</label>
+                  <select class="custom-select rounded-0" id="exampleSelectRounded0">
+                     {% if portals %}
+                     {% for portal in portals %}
+                        <option value="{{ portal.id }}">{{ portal.name }}</option>
+                     {% endfor %}
+                     {% endif %}
+                  </select>
+                </div>
+                  <div class="form-group">
                     <label for="targetLink">Target Link</label>
                     <input type="text" class="form-control form-control-border" id="targetLink" placeholder="Enter link"
                            name="target_link" value="{% if form.target_link %} {{ form.target_link.value }} {% endif %}" required>
