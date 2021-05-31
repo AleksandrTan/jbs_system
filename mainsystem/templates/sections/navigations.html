@@ -166,26 +166,13 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
+          <li class="nav-item">
+            <a href="{% url 'portals_view' %}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
               <p>
-                Portals {{ portals }}
-                <i class="fas fa-angle-left right"></i>
+                Portals
               </p>
             </a>
-            <ul class="nav nav-treeview">
-                {% if portals %}
-                    {% for portal in portals %}
-                        <li class="nav-item">
-                            <a href="pages/mailbox/mailbox.html" class="nav-link">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>{{ portal.name }}</p>
-                        </a>
-              </li>
-                    {% endfor %}
-                {% endif %}
-            </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
