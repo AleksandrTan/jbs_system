@@ -30,7 +30,6 @@ class SaveOrder(BaseAdminView, CreateView):
         order_form = OrderForm(request.POST, request.FILES)
         if order_form.is_valid():
             order = order_form.save()
-            print(order.id)
             # send message task for worker in RabbitMQ
             self.send_message(order)
             return redirect('homeadmin')

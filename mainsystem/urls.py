@@ -14,10 +14,12 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(success_url="homeadmin"), name='loginadmin'),
     path('logoutadmin/', auth_views.LogoutView.as_view(), name='logoutadmin'),
     path('', MainView.as_view(), name='homeadmin'),
+
     # ======================================= Portals urls ==========================================================
     path('portals/view/', PortalsPageView.as_view(), name="portals_view"),
     path('portals/create/', CreatePortal.as_view(), name="create_portal"),
     path('portals/edit/<int:pk>/', EditPortal.as_view(), name="edit_portal"),
+
     # ======================================= Bots urls ==============================================================
     path('bot/create_task/', CreateTaskPageView.as_view(), name="create_task"),
     path('bot/create/', SaveOrder.as_view(), name="save_order"),

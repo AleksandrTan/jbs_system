@@ -5,6 +5,4 @@ class PortalWork:
 
     @staticmethod
     def get_all():
-        portals = Portal.objects.filter(is_active=True).all()
-        print(portals)
-        return portals
+        return Portal.objects.filter(is_active=True).all()
