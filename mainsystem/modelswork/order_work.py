@@ -19,3 +19,13 @@ class OrderWork:
         order.status = data["status"]
         order.message = data["message"]
         order.save()
+
+    @staticmethod
+    def update_order_success(order_id, data):
+        data_order = OrderWork.get_single_order(order_id)
+        if not data_order["status"]:
+            return False
+        order = data_order["order"]
+        order.status = data["status"]
+        order.message = data["message"]
+        order.save()

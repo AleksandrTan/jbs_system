@@ -48,6 +48,7 @@ class SaveOrder(BaseAdminView, CreateView):
                 "user_name": order.user_name,
                 "last_name": order.last_name,
                 "email": order.email,
+                "portal": order.portal.alias,
                 "proxy": {
                     "proxy_id": 1,
                     "host": "138.219.173.58",

@@ -11,3 +11,13 @@ class OrderFail(APIView):
         data_response["status"] = True
 
         return Response(data_response)
+
+
+class OrderSuccess(APIView):
+    def post(self, request, *args, **kwargs):
+        data_response = dict()
+        OrderWork.update_order_success(kwargs["order_id"], request.data)
+        data_response["status"] = True
+
+        return Response(data_response)
+

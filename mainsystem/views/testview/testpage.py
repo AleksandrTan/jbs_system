@@ -21,6 +21,7 @@ class TestFormView(TemplateView):
 
 class TestDataSave(CreateView):
     def post(self, request, *args, **kwargs):
+        print(request.headers)
         order_form = TestForm(request.POST, request.FILES)
         if order_form.is_valid():
             order_form.save()
