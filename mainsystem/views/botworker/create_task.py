@@ -40,26 +40,29 @@ class SaveOrder(BaseAdminView, CreateView):
     def send_message(self, order):
         rabbit_worker = RabbitWorker()
         proxy = ProxyWork.get_proxy()
-        print(proxy)
-        message = json.dumps(
-            {
-                "status": True,
-                "target_link": order.target_link,
-                "order_id": order.id,
-                "file_mailing": order.file_mailing.url,
-                "file_name": order.file_mailing.name.split("/")[-1],
-                "user_name": order.user_name,
-                "last_name": order.last_name,
-                "email": order.email,
-                "portal": order.portal.alias,
-                "proxy": {
-                    "proxy_id": proxy.id,
-                    "host": proxy.host_proxy,
-                    "port": proxy.port_proxy,
-                    "protocol": proxy.protocol_proxy,
-                    "username": proxy.username_proxy,
-                    "password": proxy.password_proxy
-                }
-            })
-        print(message)
-        # rabbit_worker.sender(message)
+        if proxy:
+            message = json.dumps(
+                {
+                    "status": True,
+                    "target_link": order.target_link,
+                    "order_id": order.id,
+                    "file_mailing": order.file_mailing.url,
+                    "file_name": order.file_mailing.name.split("/")[-1],
+                    "user_name": order.user_name,
+                    "last_name": order.last_name,
+                    "email": order.email,
+                    "portal": order.portal.alias,
+                    "proxy": {
+                        "proxy_id": proxy.id,
+                        "host": proxy.host_proxy,
+                        "port": proxy.port_proxy,
+                        "protocol": proxy.protocol_proxy,
+                        "username": proxy.username_proxy,
+                        "password": proxy.password_proxy
+                    }
+                })
+
+            rabbit_worker.sender(message)
+
+            return True
+        return False
