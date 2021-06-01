@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 from mainsystem.forms.test_form import TestForm
 from django.http import HttpResponse
-from django.http import (HttpResponse, HttpResponseBadRequest, HttpResponseForbidden)
+from django.http import (HttpResponse, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseRedirect)
 
 
 class TestView(TemplateView):

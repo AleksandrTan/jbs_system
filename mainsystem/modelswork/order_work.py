@@ -16,7 +16,7 @@ class OrderWork:
         if not data_order["status"]:
             return False
         order = data_order["order"]
-        order.status = data["status"]
+        order.status = False
         order.message = data["message"]
         order.status_order = "fail"
         order.save()
@@ -27,7 +27,7 @@ class OrderWork:
         if not data_order["status"]:
             return False
         order = data_order["order"]
-        order.status = data["status"]
+        order.status = False
         order.status_order = "done"
         order.message = "Task completed successfully"
         order.all_links = data["all_links"]

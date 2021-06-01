@@ -7,6 +7,7 @@ from mainsystem.views.botworker.create_task import CreateTaskPageView, SaveOrder
 from mainsystem.views.botworker.get_file import send_file
 from mainsystem.views.apiworker.tasks_result import OrderFail,   OrderSuccess
 from mainsystem.views.portalworker.portals import PortalsPageView, CreatePortal, EditPortal
+from mainsystem.views.orders.order_view import OrdersView
 
 # ======================================= Main urls ==================================================================
 
@@ -14,6 +15,9 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(success_url="homeadmin"), name='loginadmin'),
     path('logoutadmin/', auth_views.LogoutView.as_view(), name='logoutadmin'),
     path('', MainView.as_view(), name='homeadmin'),
+
+    # ======================================= Orders urls ==========================================================
+    path('orders/view/', OrdersView.as_view(), name="orders_view"),
 
     # ======================================= Portals urls ==========================================================
     path('portals/view/', PortalsPageView.as_view(), name="portals_view"),

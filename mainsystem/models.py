@@ -14,7 +14,7 @@ class Order(models.Model):
     user_name = models.CharField(max_length=500)
     last_name = models.CharField(max_length=500)
     email = models.CharField(max_length=500)
-    status = models.BooleanField(default=False)
+    status = models.BooleanField(default=True)
     status_order = models.CharField(default="create", max_length=500)
     target_link = models.CharField(max_length=500, default='', blank=True)
     file_mailing = models.FileField(upload_to="files_mailing",
