@@ -8,6 +8,7 @@ from mainsystem.views.basepage import BaseAdminView
 from mainsystem.forms.order_form import OrderForm
 from coresystem.rconnector import RabbitWorker
 from mainsystem.modelswork.portal_work import PortalWork
+from mainsystem.modelswork.proxywork.proxy_work import ProxyWork
 
 
 class CreateTaskPageView(BaseAdminView, TemplateView):
@@ -38,6 +39,8 @@ class SaveOrder(BaseAdminView, CreateView):
 
     def send_message(self, order):
         rabbit_worker = RabbitWorker()
+        proxy = ProxyWork.get_proxy()
+        print(proxy)
         message = json.dumps(
             {
                 "status": True,
@@ -50,13 +53,13 @@ class SaveOrder(BaseAdminView, CreateView):
                 "email": order.email,
                 "portal": order.portal.alias,
                 "proxy": {
-                    "proxy_id": 1,
-                    "host": "138.219.173.58",
-                    "port": 0,
-                    "protocol": "http",
-                    "username": '2DxLL0',
-                    "password": 'fwcZsa'
+                    "proxy_id": proxy.id,
+                    "host": proxy.host_proxy,
+                    "port": proxy.port_proxy,
+                    "protocol": proxy.protocol_proxy,
+                    "username": proxy.username_proxy,
+                    "password": proxy.password_proxy
                 }
             })
-
-        rabbit_worker.sender(message)
+        print(message)
+        # rabbit_worker.sender(message)
