@@ -18,6 +18,7 @@ class OrderWork:
         order = data_order["order"]
         order.status = data["status"]
         order.message = data["message"]
+        order.status_order = "fail"
         order.save()
 
     @staticmethod
@@ -27,5 +28,9 @@ class OrderWork:
             return False
         order = data_order["order"]
         order.status = data["status"]
-        order.message = data["message"]
+        order.status_order = "done"
+        order.message = "Task completed successfully"
+        order.all_links = data["all_links"]
+        order.send_links = data["send_links"]
+        order.fail_links = data["fail_links"]
         order.save()

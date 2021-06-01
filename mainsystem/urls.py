@@ -5,7 +5,7 @@ from mainsystem.views.startpage import MainView
 from mainsystem.views.testview.testpage import TestView, TestFormView, TestDataSave
 from mainsystem.views.botworker.create_task import CreateTaskPageView, SaveOrder
 from mainsystem.views.botworker.get_file import send_file
-from mainsystem.views.apiworker.tasks_result import OrderFail
+from mainsystem.views.apiworker.tasks_result import OrderFail,   OrderSuccess
 from mainsystem.views.portalworker.portals import PortalsPageView, CreatePortal, EditPortal
 
 # ======================================= Main urls ==================================================================
@@ -24,7 +24,8 @@ urlpatterns = [
     path('bot/create_task/', CreateTaskPageView.as_view(), name="create_task"),
     path('bot/create/', SaveOrder.as_view(), name="save_order"),
     path('bot/get_file/', send_file, name="send_file"),
-    path('api/order/<str:order_id>/fail/', OrderFail.as_view(), name="order_done"),
+    path('api/order/<str:order_id>/fail/', OrderFail.as_view(), name="order_fail"),
+    path('api/order/<str:order_id>/success/', OrderSuccess.as_view(), name="order_success"),
 
     # ======================================= TEST urls ==============================================================
     path('testpage/', TestView.as_view(), name="test_page"),
