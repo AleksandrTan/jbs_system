@@ -1,0 +1,66 @@
+{% extends "index.html" %}
+{% block content %}
+<section class="content">
+      <div class="container-fluid">
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Proxy</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Protocol</th>
+                      <th>Host</th>
+                      <th>Port</th>
+                      <th>Username</th>
+                      <th>Password</th>
+                      <th>Is active</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% if object_list %}
+                    {% for proxy in object_list %}
+                    <tr>
+                      <td>{{ proxy.id }}</td>
+                      <td>{{ proxy.protocol_proxy }}</td>
+                      <td>{{ proxy.host_proxy }}</td>
+                      <td>{{ proxy.port_proxy }}</td>
+                      <td>{{ proxy.username_proxy }}</td>
+                      <td>{{ proxy.password_proxy }}</td>
+                      <td><span class="tag tag-success">{{ proxy.is_active }}</span></td>
+                      <td><a type="button" class="btn btn-block btn-primary btn-sm" href="{% url 'edit_proxy' proxy.id %}">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                  {% endif %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    <a type="button" class="btn btn-block btn-primary btn-lg" href="{% url 'create_proxy' %}">Add Proxy</a>
+    </section>
+{% endblock %}

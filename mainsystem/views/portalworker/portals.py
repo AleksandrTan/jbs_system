@@ -24,7 +24,6 @@ class CreatePortal(BaseAdminView, TemplateView):
         portal_form = PortalForm(request.POST, request.FILES)
         if portal_form.is_valid():
             order = portal_form.save()
-            print(order.id)
             return redirect('portals_view')
         else:
             return render(request, "portals/create_portal.html", {"form": portal_form})

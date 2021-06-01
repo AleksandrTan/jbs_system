@@ -8,6 +8,7 @@ from mainsystem.views.botworker.get_file import send_file
 from mainsystem.views.apiworker.tasks_result import OrderFail,   OrderSuccess
 from mainsystem.views.portalworker.portals import PortalsPageView, CreatePortal, EditPortal
 from mainsystem.views.orders.order_view import OrdersView
+from mainsystem.views.proxy.view_proxy import ProxyPageView, CreateProxy, EditProxy
 
 # ======================================= Main urls ==================================================================
 
@@ -30,6 +31,11 @@ urlpatterns = [
     path('bot/get_file/', send_file, name="send_file"),
     path('api/order/<str:order_id>/fail/', OrderFail.as_view(), name="order_fail"),
     path('api/order/<str:order_id>/success/', OrderSuccess.as_view(), name="order_success"),
+
+    # ======================================= Proxy urls ==========================================================
+    path('proxy/view/', ProxyPageView.as_view(), name="proxy_view"),
+    path('proxy/create/', CreateProxy.as_view(), name="create_proxy"),
+    path('proxy/edit/<int:pk>/', EditProxy.as_view(), name="edit_proxy"),
 
     # ======================================= TEST urls ==============================================================
     path('testpage/', TestView.as_view(), name="test_page"),

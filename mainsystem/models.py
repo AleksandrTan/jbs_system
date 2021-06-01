@@ -41,3 +41,12 @@ class TestData(models.Model):
     copy_paste = models.CharField(max_length=500, blank=True)
     authenticity_token = models.CharField(max_length=500, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+
+class Proxy(models.Model):
+    protocol_proxy = models.CharField(max_length=500, default='', blank=True)
+    host_proxy = models.CharField(max_length=500, default='', blank=True)
+    port_proxy = models.SmallIntegerField(default=0, blank=True)
+    username_proxy = models.CharField(max_length=500, default='', blank=True)
+    password_proxy = models.CharField(max_length=500, default='', blank=True)
+    is_active = models.BooleanField(default=False)

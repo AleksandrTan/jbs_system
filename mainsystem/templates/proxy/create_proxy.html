@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Add a new proxy{{ form.errors }}</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="post" enctype="multipart/form-data" action="{% url 'create_proxy' %}">{% csrf_token %}
+                <div class="card-body">
+                <div class="form-group">
+                    <label for="protocol_proxy">Protocol</label>
+                    <input type="text" class="form-control form-control-border" id="protocol_proxy" placeholder="Enter protocol"
+                           name="protocol_proxy" value="{% if form.protocol_proxy %} {{ form.protocol_proxy.value }} {% endif %}">
+                  </div>
+                  <div class="form-group">
+                    <label for="host_proxy">Host</label>
+                    <input type="text" class="form-control form-control-border" id="host_proxy" placeholder="Enter host proxy"
+                           name="host_proxy" value="{% if form.host_proxy %} {{ form.host_proxy.value }} {% endif %}">
+                  </div>
+                  <div class="form-group">
+                    <label for="port_proxy">Port</label>
+                    <input type="number" class="form-control form-control-border" id="port_proxy" placeholder="Enter port proxy"
+                           name="port_proxy" value="{% if form.port_proxy %} {{ form.port_proxy.value }} {% endif %}">
+                  </div>
+                  <div class="form-group">
+                    <label for="username_proxy">UserName</label>
+                    <input type="text" class="form-control form-control-border" id="username_proxy" placeholder="Enter username"
+                           name="username_proxy" value="{% if form.username_proxy %} {{ form.username_proxy.value }} {% endif %}">
+                  </div>
+                  <div class="form-group">
+                    <label for="password_proxy">Password</label>
+                    <input type="text" class="form-control form-control-border" id="password_proxy" placeholder="Enter password proxy"
+                           name="password_proxy" value="{% if form.password_proxy %} {{ form.password_proxy.value }} {% endif %}">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+{% endblock %}
