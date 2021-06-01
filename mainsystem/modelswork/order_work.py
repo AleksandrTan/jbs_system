@@ -4,6 +4,10 @@ from mainsystem.models import Order
 class OrderWork:
 
     @staticmethod
+    def get_active_orders():
+        return Order.objects.filter(status=True).count()
+
+    @staticmethod
     def get_single_order(order_id):
         try:
             return {"status": True, "order": Order.objects.get(id=order_id)}
