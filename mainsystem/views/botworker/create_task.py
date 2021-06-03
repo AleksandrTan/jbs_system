@@ -30,13 +30,14 @@ class SaveOrder(BaseAdminView, CreateView):
     """
     Save new order, send task in RabbitMQ
     """
+
     def post(self, request, *args, **kwargs):
         order_form = OrderForm(request.POST, request.FILES)
         if order_form.is_valid():
             order = order_form.save()
             # send message task for worker in RabbitMQ
             self.send_message(order)
-            return redirect('homeadmin')
+            return redirect('orders_view')
         else:
             return render(request, 'botwork/create_task.html', {"form": order_form, "portals": PortalWork.get_all()})
 
@@ -90,64 +91,15 @@ class SaveOrder(BaseAdminView, CreateView):
         return True
 
 
-class RestartOrder(BaseAdminView, CreateView):
+class RestartOrder(SaveOrder):
     """
-    Save new order, send task in RabbitMQ
+    Restart order, send task in RabbitMQ
     """
 
     def get(self, request, *args, **kwargs):
         order = OrderWork.get_single_order(kwargs["pk"])
-        print(order)
         if order["status"]:
             # send message task for worker in RabbitMQ
             self.send_message(order["order"])
+            OrderWork.update_order_restart(kwargs["pk"])
         return redirect('orders_view')
-
-    def send_message(self, order):
-        rabbit_worker = RabbitWorker()
-        proxy = ProxyWork.get_proxy()
-        if proxy:
-            message = json.dumps(
-                {
-                    "status": True,
-                    "target_link": order.target_link,
-                    "order_id": order.id,
-                    "file_mailing": order.file_mailing.url,
-                    "file_name": order.file_mailing.name.split("/")[-1],
-                    "user_name": order.user_name,
-                    "last_name": order.last_name,
-                    "email": order.email,
-                    "portal": order.portal.alias,
-                    "proxy": {
-                        "proxy_id": proxy.id,
-                        "host": proxy.host_proxy,
-                        "port": proxy.port_proxy,
-                        "protocol": proxy.protocol_proxy,
-                        "username": proxy.username_proxy,
-                        "password": proxy.password_proxy
-                    }
-                })
-        else:
-            message = json.dumps(
-                {
-                    "status": True,
-                    "target_link": order.target_link,
-                    "order_id": order.id,
-                    "file_mailing": order.file_mailing.url,
-                    "file_name": order.file_mailing.name.split("/")[-1],
-                    "user_name": order.user_name,
-                    "last_name": order.last_name,
-                    "email": order.email,
-                    "portal": order.portal.alias,
-                    "proxy": {
-                        "proxy_id": 0,
-                        "host": '',
-                        "port": '',
-                        "protocol": '',
-                        "username": '',
-                        "password": ''
-                    }
-                })
-        rabbit_worker.sender(message)
-
-        return True

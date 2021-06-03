@@ -57,7 +57,11 @@
                       <td><span class="tag tag-success">{{ order.status_order }}</span></td>
 {#                      <td><a type="button" class="btn btn-block btn-primary btn-sm" href="{% url 'edit_portal' order.id %}">View</a></td>#}
                       <td class="text-wrap">{{ order.message }}</td>
-                      <td><a type="button" class="btn btn-block btn-primary btn-sm" href="{% url 'restart_order' order.id %}">Restart</a></td>
+                      {% if order.status %}
+                          <td><a type="button" class="btn btn-block btn-primary btn-sm disabled" href="{% url 'restart_order' order.id %}">Restart</a></td>
+                      {% else %}
+                        <td><a type="button" class="btn btn-block btn-primary btn-sm" href="{% url 'restart_order' order.id %}">Restart</a></td>
+                      {% endif %}
                     </tr>
                     {% endfor %}
                   {% endif %}

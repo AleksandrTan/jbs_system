@@ -38,3 +38,17 @@ class OrderWork:
         order.send_links = data["send_links"]
         order.fail_links = data["fail_links"]
         order.save()
+
+    @staticmethod
+    def update_order_restart(order_id):
+        data_order = OrderWork.get_single_order(order_id)
+        if not data_order["status"]:
+            return False
+        order = data_order["order"]
+        order.status_order = "create"
+        order.status = True
+        order.message = ''
+        order.all_links = 0
+        order.send_links = 0
+        order.fail_links = 0
+        order.save()
