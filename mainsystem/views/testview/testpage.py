@@ -29,7 +29,6 @@ class TestFormView(TemplateView):
     template_name = 'test/test_form.html'
 
     def get(self, request, *args, **kwargs):
-        print(request.COOKIES, 3500)
         return super(TestFormView, self).get(self, request, *args, **kwargs)
 
     def render_to_response(self, context, **response_kwargs):
