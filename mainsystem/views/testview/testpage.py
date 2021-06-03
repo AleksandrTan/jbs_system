@@ -9,6 +9,18 @@ from django.http import (HttpResponse, HttpResponseBadRequest, HttpResponseForbi
 class TestView(TemplateView):
     template_name = 'test/test1.html'
 
+    def get(self, request, *args, **kwargs):
+        print(request.COOKIES, 3500)
+        return super(TestView, self).get(self, request, *args, **kwargs)
+
+    def render_to_response(self, context, **response_kwargs):
+        response = super(TestView, self).render_to_response(context, **response_kwargs)
+        response.set_cookie('BID', '3500')
+        response.set_cookie('VID', '3500')
+        response.set_cookie('activity', '3500')
+        response.set_cookie('ast_visit_at', '3500')
+        response.set_cookie('last_jdp_search_rails', '3500')
+        return response
     # def get(self, request, *args, **kwargs):
     #     return HttpResponseForbidden()
 

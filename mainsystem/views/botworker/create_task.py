@@ -61,7 +61,27 @@ class SaveOrder(BaseAdminView, CreateView):
                         "password": proxy.password_proxy
                     }
                 })
-
+        else:
+            message = json.dumps(
+                {
+                    "status": True,
+                    "target_link": order.target_link,
+                    "order_id": order.id,
+                    "file_mailing": order.file_mailing.url,
+                    "file_name": order.file_mailing.name.split("/")[-1],
+                    "user_name": order.user_name,
+                    "last_name": order.last_name,
+                    "email": order.email,
+                    "portal": order.portal.alias,
+                    "proxy": {
+                        "proxy_id": 0,
+                        "host": '',
+                        "port": '',
+                        "protocol": '',
+                        "username": '',
+                        "password": ''
+                    }
+                })
             rabbit_worker.sender(message)
 
             return True
