@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 
 from mainsystem.views.startpage import MainView
 from mainsystem.views.testview.testpage import (TestView, TestFormView, TestDataSave, OneRedirect, TwoRedirect)
-from mainsystem.views.botworker.create_task import CreateTaskPageView, SaveOrder
+from mainsystem.views.botworker.create_task import CreateTaskPageView, SaveOrder, RestartOrder
 from mainsystem.views.botworker.get_file import send_file
 from mainsystem.views.apiworker.tasks_result import OrderFail,   OrderSuccess
 from mainsystem.views.portalworker.portals import PortalsPageView, CreatePortal, EditPortal
@@ -19,7 +19,7 @@ urlpatterns = [
 
     # ======================================= Orders urls ==========================================================
     path('orders/view/', OrdersView.as_view(), name="orders_view"),
-
+    path('orders/restart/<int:pk>/', RestartOrder.as_view(), name="restart_order"),
     # ======================================= Portals urls ==========================================================
     path('portals/view/', PortalsPageView.as_view(), name="portals_view"),
     path('portals/create/', CreatePortal.as_view(), name="create_portal"),

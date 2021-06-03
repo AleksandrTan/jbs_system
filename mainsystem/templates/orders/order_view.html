@@ -38,7 +38,9 @@
                       <th>Success Link</th>
                       <th>Fail Link</th>
                       <th>Status</th>
-                      <th>View</th>
+{#                      <th>View</th>#}
+                      <th>Message</th>
+                      <th>Restart</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -53,7 +55,9 @@
                       <td>{{ order.send_links }}</td>
                       <td>{{ order.fail_links }}</td>
                       <td><span class="tag tag-success">{{ order.status_order }}</span></td>
-                      <td><a type="button" class="btn btn-block btn-primary btn-sm" href="{% url 'edit_portal' order.id %}">View</a></td>
+{#                      <td><a type="button" class="btn btn-block btn-primary btn-sm" href="{% url 'edit_portal' order.id %}">View</a></td>#}
+                      <td class="text-wrap">{{ order.message }}</td>
+                      <td><a type="button" class="btn btn-block btn-primary btn-sm" href="{% url 'restart_order' order.id %}">Restart</a></td>
                     </tr>
                     {% endfor %}
                   {% endif %}
