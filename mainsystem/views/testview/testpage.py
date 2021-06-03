@@ -27,6 +27,20 @@ class TestView(TemplateView):
 
 class TestFormView(TemplateView):
     template_name = 'test/test_form.html'
+
+    def get(self, request, *args, **kwargs):
+        print(request.COOKIES, 3500)
+        return super(TestFormView, self).get(self, request, *args, **kwargs)
+
+    def render_to_response(self, context, **response_kwargs):
+        response = super(TestFormView, self).render_to_response(context, **response_kwargs)
+        response.set_cookie('BID', '13500')
+        response.set_cookie('VID', '13500')
+        response.set_cookie('activity', '13500')
+        response.set_cookie('ast_visit_at', '13500')
+        response.set_cookie('last_jdp_search_rails', '13500')
+        return response
+
     #
     # def get(self, request, *args, **kwargs):
     #     return HttpResponseBadRequest(content="Fail")

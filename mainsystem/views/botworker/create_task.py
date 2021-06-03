@@ -35,7 +35,8 @@ class SaveOrder(BaseAdminView, CreateView):
             self.send_message(order)
             return redirect('homeadmin')
         else:
-            return render(request, 'botwork/create_task.html', {"form": order_form})
+            print(3500)
+            return render(request, 'botwork/create_task.html', {"form": order_form, "portals": PortalWork.get_all()})
 
     def send_message(self, order):
         rabbit_worker = RabbitWorker()
