@@ -66,6 +66,7 @@ class SaveOrder(BaseAdminView, CreateView):
                         "password": proxy.password_proxy
                     }
                 })
+            print(message)
         else:
             message = json.dumps(
                 {
