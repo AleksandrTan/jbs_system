@@ -15,7 +15,6 @@ class StatisticsView(BaseAdminView, TemplateView):
         context["proxy_count"] = ProxyWork.active_proxy_count()
         context["orders_count"] = OrderWork.get_count()
         context["orders_stat_links"] = OrderWork.stat_data_links()
-        context["orders_stat"] = data = OrderWork.stat_data_orders()
-        print(data)
+        context["orders_stat"] = OrderWork.stat_data_orders()
 
         return context

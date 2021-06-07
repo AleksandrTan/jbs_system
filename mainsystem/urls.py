@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include, re_path
 from django.contrib.auth import views as auth_views
 
 from mainsystem.views.startpage import MainView
@@ -20,7 +20,7 @@ urlpatterns = [
     path('', MainView.as_view(), name='homeadmin'),
 
     # ======================================= Orders urls ==========================================================
-    path('orders/view/', OrdersView.as_view(), name="orders_view"),
+    re_path(r'^orders/view/(?:page/(?P<page>\d+)/)?$', OrdersView.as_view(), name="orders_view"),
     path('orders/restart/<int:pk>/', RestartOrder.as_view(), name="restart_order"),
     # ======================================= Portals urls ==========================================================
     path('portals/view/', PortalsPageView.as_view(), name="portals_view"),
