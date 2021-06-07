@@ -10,6 +10,7 @@ from mainsystem.views.portalworker.portals import PortalsPageView, CreatePortal,
 from mainsystem.views.orders.order_view import OrdersView
 from mainsystem.views.proxy.view_proxy import ProxyPageView, CreateProxy, EditProxy
 from mainsystem.views.proxy.update_proxy import UpdateProxy
+from mainsystem.views.statistics.statistics_view import StatisticsView
 
 # ======================================= Main urls ==================================================================
 
@@ -33,11 +34,14 @@ urlpatterns = [
     path('api/order/<str:order_id>/fail/', OrderFail.as_view(), name="order_fail"),
     path('api/order/<str:order_id>/success/', OrderSuccess.as_view(), name="order_success"),
 
-    # ======================================= Proxy urls ==========================================================
+    # ======================================= Proxy urls ===========================================+===============
     path('proxy/view/', ProxyPageView.as_view(), name="proxy_view"),
     path('proxy/create/', CreateProxy.as_view(), name="create_proxy"),
     path('proxy/edit/<int:pk>/', EditProxy.as_view(), name="edit_proxy"),
     path('proxy/update/', UpdateProxy.as_view(), name="update_proxy"),
+
+    # ======================================= Statistics urls =======================================================
+    path('statistics/view/', StatisticsView.as_view(), name="statistics_view"),
 
     # ======================================= TEST urls ==============================================================
     path('testpage/', TestView.as_view(), name="test_page"),

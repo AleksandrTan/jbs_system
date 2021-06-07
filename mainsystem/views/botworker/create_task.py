@@ -22,6 +22,7 @@ class CreateTaskPageView(BaseAdminView, TemplateView):
         context = super(CreateTaskPageView, self).get_context_data()
         context["portals"] = PortalWork.get_all()
         context["proxy"] = ProxyWork.active_proxy_count()
+        context["is_tab_open"] = True
 
         return context
 

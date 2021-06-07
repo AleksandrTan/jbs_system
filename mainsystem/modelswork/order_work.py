@@ -52,3 +52,7 @@ class OrderWork:
         order.send_links = 0
         order.fail_links = 0
         order.save()
+
+    @staticmethod
+    def get_all_orders():
+        return Order.objects.count()

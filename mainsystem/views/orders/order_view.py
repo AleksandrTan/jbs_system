@@ -9,3 +9,9 @@ class OrdersView(BaseAdminView, ListView):
     paginate_by = 50
     template_name = "orders/order_view.html"
     ordering = ["id"]
+
+    def get_context_data(self, **kwargs):
+        context = super(OrdersView, self).get_context_data()
+        context["is_tab_open"] = True
+
+        return context

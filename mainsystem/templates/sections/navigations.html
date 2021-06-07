@@ -158,21 +158,28 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{% url 'create_task' %}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+          <li class="nav-item {% if is_tab_open %} menu-is-opening menu-open {% endif %}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
               <p>
-                Create order
+                Orders
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'orders_view' %}" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Orders list
-              </p>
-            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'create_task' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Create order</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'orders_view' %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Orders list</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="{% url 'portals_view' %}" class="nav-link">
@@ -187,6 +194,14 @@
               <i class="nav-icon far fa-image"></i>
               <p>
                 Proxy
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'statistics_view' %}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Statistics
               </p>
             </a>
           </li>
