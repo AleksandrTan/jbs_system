@@ -1,7 +1,25 @@
+from django.db.models import Count, Sum
+
 from mainsystem.models import Order
 
 
 class OrderWork:
+
+    @staticmethod
+    def stat_data_orders():
+        data_success_orders = Order.objects.filter(status_order="done").count()
+        data_fail_orders = Order.objects.filter(status_order="fail").count()
+        return data_success_orders, data_fail_orders
+
+    @staticmethod
+    def stat_data_links():
+        data = Order.objects.aggregate(total=Sum('all_links'), total_success=Sum('send_links'),
+                                       total_failed=Sum('fail_links'))
+        return data
+
+    @staticmethod
+    def get_all_objects():
+        return Order.objects.all()
 
     @staticmethod
     def get_active_orders():
@@ -54,5 +72,5 @@ class OrderWork:
         order.save()
 
     @staticmethod
-    def get_all_orders():
+    def get_count():
         return Order.objects.count()

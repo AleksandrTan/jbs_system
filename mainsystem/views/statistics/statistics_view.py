@@ -11,8 +11,11 @@ class StatisticsView(BaseAdminView, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(StatisticsView, self).get_context_data()
-        context["portals"] = PortalWork.get_count()
-        context["proxy"] = ProxyWork.active_proxy_count()
-        context["orders"] = OrderWork.get_all_orders()
+        context["portals_count"] = PortalWork.get_count()
+        context["proxy_count"] = ProxyWork.active_proxy_count()
+        context["orders_count"] = OrderWork.get_count()
+        context["orders_stat_links"] = OrderWork.stat_data_links()
+        context["orders_stat"] = data = OrderWork.stat_data_orders()
+        print(data)
 
         return context
