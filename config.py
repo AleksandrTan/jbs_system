@@ -1,10 +1,13 @@
 # redis
+import os
+
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 
 # rabbitMQ
-RABBIT_HOST = 'localhost'
-RABBIT_PORT = 5672
+RABBIT_HOST = os.getenv('RABBIT_HOST', default='localhost')
+RABBIT_PORT = os.getenv('RABBIT_PORT', default=5672)
+QUEUE_NAME = os.getenv('QUEUE_NAME', default="jobspamer")
 
 # NySQL
 MYSQL_USER = "root"
