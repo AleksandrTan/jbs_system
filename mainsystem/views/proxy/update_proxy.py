@@ -11,7 +11,7 @@ class UpdateProxy(APIView):
     def get(self, request, *args, **kwargs):
         print(request, request.GET, args, kwargs)
         data_response = dict()
-        proxy = ProxyWork.get_proxy_update()
+        proxy = ProxyWork.get_proxy_update(request.GET["proxy_id"])
         if proxy:
             data_response["status"] = True
             data_response["proxy"] = proxy[1]

@@ -16,8 +16,8 @@ class ProxyWork:
         return Proxy.objects.filter(is_active=True).count()
 
     @staticmethod
-    def get_proxy_update() -> tuple:
-        proxy = Proxy.objects.filter(is_active=True).order_by("?").first()
+    def get_proxy_update(proxy_id) -> tuple:
+        proxy = Proxy.objects.filter(is_active=True).exclude(pk=proxy_id).order_by("?").first()
         if proxy.username_proxy and proxy.password_proxy:
             return proxy.id, proxy.protocol_proxy + "://" + proxy.username_proxy + ":" + proxy.password_proxy + "@" +\
                    proxy.host_proxy + ":" + str(proxy.port_proxy)
