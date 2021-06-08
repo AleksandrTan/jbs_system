@@ -3,3 +3,4 @@
 .idea
 /media
 jbs_system/local.py
+./jbs_system/local.py
