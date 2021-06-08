@@ -14,10 +14,12 @@ class UpdateProxy(APIView):
         proxy = ProxyWork.get_proxy_update()
         if proxy:
             data_response["status"] = True
-            data_response["proxy"] = proxy
+            data_response["proxy"] = proxy[1]
+            data_response["proxy_id"] = proxy[0]
         else:
             data_response["status"] = False
         # update proxy fail count
-        ProxyWork.update_request_fail(request.GET["proxy_id"])
+        if request.GET["proxy_id"] != '0':
+            ProxyWork.update_request_fail(request.GET["proxy_id"])
 
         return Response(data_response)
