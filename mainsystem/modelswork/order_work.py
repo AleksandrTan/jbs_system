@@ -1,6 +1,7 @@
 from django.db.models import Count, Sum
 
 from mainsystem.models import Order
+from mainsystem.modelswork.proxywork.proxy_work import ProxyWork
 
 
 class OrderWork:
@@ -42,6 +43,8 @@ class OrderWork:
         order.message = data["message"]
         order.status_order = "fail"
         order.save()
+        # update proxy fail count
+        ProxyWork.update_request_fail(data["proxy_id"])
 
     @staticmethod
     def update_order_success(order_id, data):

@@ -4,6 +4,10 @@ from mainsystem.models import Proxy
 class ProxyWork:
 
     @staticmethod
+    def get_proxy_id(proxy_id):
+        return Proxy.objects.filter(pk=proxy_id).get()
+
+    @staticmethod
     def get_proxy():
         return Proxy.objects.filter(is_active=True).order_by("?").first()
 
@@ -14,4 +18,14 @@ class ProxyWork:
     @staticmethod
     def get_proxy_update():
         proxy = Proxy.objects.filter(is_active=True).order_by("?").first()
-        return proxy.protocol_proxy + "://" + proxy.username_proxy + ":" + proxy.password_proxy + "@" + proxy.host_proxy + ":" + str(proxy.port_proxy)
+        if proxy.username_proxy and proxy.password_proxy:
+            return proxy.protocol_proxy + "://" + proxy.username_proxy + ":" + proxy.password_proxy + "@" +\
+                   proxy.host_proxy + ":" + str(proxy.port_proxy)
+        else:
+            return proxy.protocol_proxy + "://" + proxy.host_proxy + ":" + str(proxy.port_proxy)
+
+    @staticmethod
+    def update_request_fail(proxy_id):
+        proxy = ProxyWork.get_proxy_id(proxy_id)
+        proxy.fail_request_proxy = proxy.fail_request_proxy + 1
+        proxy.save()

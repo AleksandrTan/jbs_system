@@ -33,6 +33,7 @@
                       <th>Username</th>
                       <th>Password</th>
                       <th>Is active</th>
+                      <th>Fail requests</th>
                       <th>Edit</th>
                     </tr>
                   </thead>
@@ -47,6 +48,7 @@
                       <td>{{ proxy.username_proxy }}</td>
                       <td>{{ proxy.password_proxy }}</td>
                       <td><span class="tag tag-success">{{ proxy.is_active }}</span></td>
+                      <td>{{ proxy.fail_request_proxy }}</td>
                       <td><a type="button" class="btn btn-block btn-primary btn-sm" href="{% url 'edit_proxy' proxy.id %}">Edit</a></td>
                     </tr>
                     {% endfor %}

@@ -50,3 +50,4 @@ class Proxy(models.Model):
     username_proxy = models.CharField(max_length=500, default='', blank=True)
     password_proxy = models.CharField(max_length=500, default='', blank=True)
     is_active = models.BooleanField(default=False)
+    fail_request_proxy = models.IntegerField(default=0)

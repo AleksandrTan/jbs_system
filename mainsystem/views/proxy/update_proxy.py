@@ -9,6 +9,7 @@ class UpdateProxy(APIView):
     Issue updated proxy
     """
     def get(self, request, *args, **kwargs):
+        print(request, request.GET, args, kwargs)
         data_response = dict()
         proxy = ProxyWork.get_proxy_update()
         if proxy:
@@ -16,5 +17,7 @@ class UpdateProxy(APIView):
             data_response["proxy"] = proxy
         else:
             data_response["status"] = False
+        # update proxy fail count
+        ProxyWork.update_request_fail(request.GET["proxy_id"])
 
         return Response(data_response)
