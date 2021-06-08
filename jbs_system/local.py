@@ -7,7 +7,7 @@ DATABASES = {
         'NAME': 'job_board_scrapper',
         'USER': 'root',
         'PASSWORD': 'ufeltfvec',
-        'HOST': 'localhost',
+        'HOST': 'localhost:8000',
         'PORT': '3306',
     }
 }
