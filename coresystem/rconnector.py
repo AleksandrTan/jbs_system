@@ -7,7 +7,8 @@ import config
 class RabbitWorker:
     def __init__(self):
         super().__init__()
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host=config.RABBIT_HOST))
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host=config.RABBIT_HOST,
+                                                                            port=config.RABBIT_PORT))
         self.channel = self.connection.channel()
 
     def sender(self, data):
