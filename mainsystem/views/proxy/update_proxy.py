@@ -10,9 +10,7 @@ class UpdateProxy(APIView):
     """
     def get(self, request, *args, **kwargs):
         data_response = dict()
-        print(request.GET)
         proxy = ProxyWork.get_proxy_update(request.GET["proxy_id"])
-        print(proxy, 4000)
         if proxy:
             data_response["status"] = True
             data_response["proxy"] = proxy[1]

@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 from mainsystem.views.basepage import BaseAdminView
 from mainsystem.models import Proxy
 from mainsystem.forms.proxy_form import ProxyForm
+from mainsystem.modelswork.proxywork.proxy_work import ProxyWork
 
 
 class ProxyPageView(BaseAdminView, ListView):
@@ -14,6 +15,7 @@ class ProxyPageView(BaseAdminView, ListView):
     """
     template_name = 'proxy/proxy_view.html'
     model = Proxy
+    queryset = ProxyWork.get_all_proxy()
 
 
 class CreateProxy(BaseAdminView, TemplateView):
