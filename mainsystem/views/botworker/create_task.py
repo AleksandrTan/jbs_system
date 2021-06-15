@@ -10,6 +10,7 @@ from coresystem.rconnector import RabbitWorker
 from mainsystem.modelswork.portal_work import PortalWork
 from mainsystem.modelswork.proxywork.proxy_work import ProxyWork
 from mainsystem.modelswork.order_work import OrderWork
+from mainsystem.modelswork.settings_work import SettingsWork
 
 
 class CreateTaskPageView(BaseAdminView, TemplateView):
@@ -45,10 +46,12 @@ class SaveOrder(BaseAdminView, CreateView):
     def send_message(self, order):
         rabbit_worker = RabbitWorker()
         proxy = ProxyWork.get_proxy()
+        is_update_proxy = SettingsWork.is_update_proxy()
         if proxy:
             message = json.dumps(
                 {
                     "status": True,
+                    "is_update_proxy": is_update_proxy,
                     "target_link": order.target_link,
                     "order_id": order.id,
                     "file_mailing": order.file_mailing.url,

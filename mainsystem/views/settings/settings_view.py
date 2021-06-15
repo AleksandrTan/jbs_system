@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 
 from mainsystem.views.basepage import BaseAdminView
 from mainsystem.models import Settings
+from mainsystem.modelswork.settings_work import SettingsWork
 from mainsystem.forms.settings_form import SettingsForm
 
 
@@ -32,11 +33,7 @@ class CreateSettings(BaseAdminView, TemplateView):
 class UpdateSettings(BaseAdminView, APIView):
     def get(self, request, *args, **kwargs):
         if request.is_ajax() and self.request.GET.get('id_data'):
-            print(self.request.GET.get('id_data'))
-            is_active = True
-            if is_active:
-                return JsonResponse({'status': True})
-            else:
-                return JsonResponse({'status': True})
+            data = SettingsWork.update_active(self.request.GET.get('id_data'))
+            return JsonResponse({'status': True, "color": data["color"], "text": data["text"]})
         else:
             return JsonResponse({'status': False})
