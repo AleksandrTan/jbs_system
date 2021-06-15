@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<section class="content">
+      <div class="container-fluid">
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Settings</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Alias</th>
+                      <th>Descriptions</th>
+                      <th>Is active</th>
+                      <th>Update</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% if object_list %}
+                    {% for set in object_list %}
+                    <tr>
+                      <td>{{ set.id }}</td>
+                      <td>{{ set.alias }}</td>
+                      <td>{{ set.description }}</td>
+                      <td><span class="tag tag-success" {% if not set.is_active %} style="color: red" {% endif %}>{{ set.is_active }}</span></td>
+                      <td><button type="button" class="btn btn-block btn-primary btn-sm" data-id="{{ set.id }}" id="set_update">Change</button></td>
+                    </tr>
+                    {% endfor %}
+                  {% endif %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    <a type="button" class="btn btn-block btn-primary btn-lg" href="{% url 'create_settings' %}">Add Settings</a>
+    </section>
+{% endblock %}

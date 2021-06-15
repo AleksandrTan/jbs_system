@@ -51,3 +51,11 @@ class Proxy(models.Model):
     password_proxy = models.CharField(max_length=500, default='', blank=True)
     is_active = models.BooleanField(default=False)
     fail_request_proxy = models.IntegerField(default=0)
+
+
+class Settings(models.Model):
+    alias = models.CharField(max_length=500, unique=True)
+    description = models.CharField(max_length=500)
+    is_active = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+

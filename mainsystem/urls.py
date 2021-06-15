@@ -11,6 +11,7 @@ from mainsystem.views.orders.order_view import OrdersView
 from mainsystem.views.proxy.view_proxy import ProxyPageView, CreateProxy, EditProxy
 from mainsystem.views.proxy.update_proxy import UpdateProxy
 from mainsystem.views.statistics.statistics_view import StatisticsView
+from mainsystem.views.settings.settings_view import SettingsView, CreateSettings, UpdateSettings
 
 # ======================================= Main urls ==================================================================
 
@@ -42,6 +43,11 @@ urlpatterns = [
 
     # ======================================= Statistics urls =======================================================
     path('statistics/view/', StatisticsView.as_view(), name="statistics_view"),
+
+    # ======================================= Settings urls =======================================================
+    path('settings/view/', SettingsView.as_view(), name="settings_view"),
+    path('settings/create/', CreateSettings.as_view(), name="create_settings"),
+    path('settings/update/', UpdateSettings.as_view(), name="update_settings"),
 
     # ======================================= TEST urls ==============================================================
     path('testpage/', TestView.as_view(), name="test_page"),
