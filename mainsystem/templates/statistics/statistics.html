@@ -51,6 +51,39 @@
             </div>
             <div class="card">
               <div class="card-header">
+                <h3 class="card-title">Portals Statistics</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Success Orders</th>
+                      <th>Fail Orders</th>
+                      <th>All links</th>
+                      <th>Success Link</th>
+                      <th>Fail Link</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for portal in portals %}
+                  <tr>
+                      <td>{{ portal.portal_name }}</td>
+                      <td>{{ portal.data_success_orders }}</td>
+                      <td>{{ portal.data_fail_orders }}</td>
+                      <td>{{ portal.total }}</td>
+                      <td>{{ portal.total_success }}</td>
+                      <td>{{ portal.total_failed }}</td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <div class="card">
+              <div class="card-header">
                 <h3 class="card-title">Link Statistics</h3>
               </div>
               <!-- /.card-header -->

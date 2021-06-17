@@ -51,7 +51,7 @@ class TestDataSave(CreateView):
         order_form = TestForm(request.POST, request.FILES)
         if order_form.is_valid():
             order_form.save()
-            return HttpResponseRedirect("http://127.0.0.1:8000/mainsystem/oneform/")
+            return HttpResponseRedirect("http://127.0.0.1:8001/mainsystem/oneform/")
         else:
             print(order_form.errors)
             return HttpResponseBadRequest(content="DFail")
@@ -59,10 +59,10 @@ class TestDataSave(CreateView):
 
 class OneRedirect(View):
     def post(self, request, *args, **kwargs):
-        return HttpResponsePermanentRedirect("http://127.0.0.1:8000/mainsystem/twoform/")
+        return HttpResponsePermanentRedirect("http://127.0.0.1:8001/mainsystem/twoform/")
 
     def get(self, request, *args, **kwargs):
-        return HttpResponsePermanentRedirect("http://127.0.0.1:8000/mainsystem/twoform/")
+        return HttpResponsePermanentRedirect("http://127.0.0.1:8001/mainsystem/twoform/")
 
 
 class TwoRedirect(TemplateView):

@@ -7,6 +7,19 @@ from mainsystem.modelswork.proxywork.proxy_work import ProxyWork
 class OrderWork:
 
     @staticmethod
+    def stat_orders_portal(portal_id) -> dict:
+        data: dict = dict()
+        data["data_success_orders"] = Order.objects.filter(status_order="done", portal_id=portal_id).count()
+        data["data_fail_orders"] = Order.objects.filter(status_order="fail", portal_id=portal_id).count()
+        links = Order.objects.filter(portal_id=portal_id).aggregate(total=Sum('all_links'),
+                                                                    total_success=Sum('send_links'),
+                                                                    total_failed=Sum('fail_links'))
+        data["total"] = links["total"]
+        data["total_success"] = links["total_success"]
+        data["total_failed"] = links["total_failed"]
+        return data
+
+    @staticmethod
     def stat_data_orders():
         data_success_orders = Order.objects.filter(status_order="done").count()
         data_fail_orders = Order.objects.filter(status_order="fail").count()
