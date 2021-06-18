@@ -8,6 +8,11 @@ class OrderWork:
 
     @staticmethod
     def stat_orders_portal(portal_id) -> dict:
+        """
+        Return statistics for single portal
+        :param portal_id: int
+        :return:
+        """
         data: dict = dict()
         data["data_success_orders"] = Order.objects.filter(status_order="done", portal_id=portal_id).count()
         data["data_fail_orders"] = Order.objects.filter(status_order="fail", portal_id=portal_id).count()
@@ -17,18 +22,25 @@ class OrderWork:
         data["total"] = links["total"]
         data["total_success"] = links["total_success"]
         data["total_failed"] = links["total_failed"]
+
         return data
 
     @staticmethod
-    def stat_data_orders():
+    def stat_data_orders() -> tuple:
+        """
+        Return statistics for orders
+        :return: tuple
+        """
         data_success_orders = Order.objects.filter(status_order="done").count()
         data_fail_orders = Order.objects.filter(status_order="fail").count()
+
         return data_success_orders, data_fail_orders
 
     @staticmethod
-    def stat_data_links():
+    def stat_data_links() -> dict:
         data = Order.objects.aggregate(total=Sum('all_links'), total_success=Sum('send_links'),
                                        total_failed=Sum('fail_links'))
+
         return data
 
     @staticmethod
@@ -36,11 +48,11 @@ class OrderWork:
         return Order.objects.all()
 
     @staticmethod
-    def get_active_orders():
+    def get_active_orders() -> int:
         return Order.objects.filter(status=True).count()
 
     @staticmethod
-    def get_single_order(order_id):
+    def get_single_order(order_id) -> dict:
         try:
             return {"status": True, "order": Order.objects.get(id=order_id)}
         except Order.DoesNotExist:
@@ -88,5 +100,9 @@ class OrderWork:
         order.save()
 
     @staticmethod
-    def get_count():
+    def get_count() -> int:
+        """
+        Return count all orders
+        :return: int
+        """
         return Order.objects.count()

@@ -14,6 +14,7 @@ class Order(models.Model):
     user_name = models.CharField(max_length=500)
     last_name = models.CharField(max_length=500)
     email = models.CharField(max_length=500)
+    password = models.CharField(max_length=500, blank=True, default='')
     status = models.BooleanField(default=True)
     status_order = models.CharField(default="create", max_length=500)
     target_link = models.CharField(max_length=500, default='', blank=True)

@@ -58,6 +58,7 @@ class SaveOrder(BaseAdminView, CreateView):
                     "file_name": order.file_mailing.name.split("/")[-1],
                     "user_name": order.user_name,
                     "last_name": order.last_name,
+                    "password": order.password,
                     "email": order.email,
                     "portal": order.portal.alias,
                     "proxy": {
@@ -80,6 +81,7 @@ class SaveOrder(BaseAdminView, CreateView):
                     "file_name": order.file_mailing.name.split("/")[-1],
                     "user_name": order.user_name,
                     "last_name": order.last_name,
+                    "password": order.password,
                     "email": order.email,
                     "portal": order.portal.alias,
                     "proxy": {

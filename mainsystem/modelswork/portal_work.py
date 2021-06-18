@@ -17,7 +17,7 @@ class PortalWork:
             portal_data["portal_name"] = portal.name
             portal_data.update(OrderWork.stat_orders_portal(portal.id))
             data.append(portal_data)
-        print(data)
+
         return data
 
     @staticmethod
