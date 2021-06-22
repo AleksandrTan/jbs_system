@@ -1,6 +1,6 @@
 {% extends "index.html" %}
 {% block content %}
-<div class="content">
+<div class="content" xmlns="http://www.w3.org/1999/html">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
@@ -19,7 +19,8 @@
               {% else %}
                 <div class="callout callout-info" style="color: red">
                     <h5><i class="fas fa-info"></i> Note:</h5>
-                  Attention! Please fill in all the fields of the form! Allowed file extensions:'docx', 'doc', 'rtf', 'txt', 'pdf'
+                  Attention! Please fill in all the fields of the form! Allowed file extensions:'docx', 'doc', 'rtf', 'txt', 'pdf'</br>
+                  Enter your login and password if the resource requires authorization. In particular indeed.com
                 </div>
                 <form method="post" enctype="multipart/form-data" action="{% url 'save_order' %}">{% csrf_token %}
                 <div class="card-body">
@@ -49,14 +50,19 @@
                            name="last_name" value="{% if form.last_name %} {{ form.last_name.value }} {% endif %}" required>
                   </div>
                   <div class="form-group">
-                    <label for="lastName">Password</label>
-                    <input type="text" class="form-control form-control-border" id="lastName" placeholder="Enter password"
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email"
+                           name="email" value="{% if form.email %} {{ form.email.value }} {% endif %}" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control form-control-border" id="password" placeholder="Enter password"
                            name="password" value="{% if form.password %} {{ form.password.value }} {% endif %}">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter username"
-                           name="email" value="{% if form.email %} {{ form.email.value }} {% endif %}" required>
+                    <label for="login">Login</label>
+                    <input type="text" class="form-control form-control-border" id="login" placeholder="Enter login"
+                           name="login" value="{% if form.login %} {{ form.login.value }} {% endif %}">
                   </div>
                   <div class="form-group">
                       <label for="exampleInputFile">File input{% if form.errors.file_mailing %} <span style="color: red"> {{ form.errors.file_mailing }} </span> {% endif %}</label>

@@ -6,15 +6,19 @@ from django.http import (HttpResponse, HttpResponseBadRequest, HttpResponseForbi
                          HttpResponsePermanentRedirect)
 
 
-class TestIndeeView(TemplateView):
+class TestIndeedLoginView(TemplateView):
+    template_name = 'test/indee_auth.html'
+
+
+class TestIndeedView(TemplateView):
     template_name = 'test/indee_main.html'
 
     def get(self, request, *args, **kwargs):
         print(request.COOKIES, 3500)
-        return super(TestIndeeView, self).get(self, request, *args, **kwargs)
+        return super(TestIndeedView, self).get(self, request, *args, **kwargs)
 
     def render_to_response(self, context, **response_kwargs):
-        response = super(TestIndeeView, self).render_to_response(context, **response_kwargs)
+        response = super(TestIndeedView, self).render_to_response(context, **response_kwargs)
         response.set_cookie('BID', '3500')
         response.set_cookie('VID', '3500')
         response.set_cookie('activity', '3500')
