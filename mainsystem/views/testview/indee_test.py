@@ -9,6 +9,10 @@ from django.http import (HttpResponse, HttpResponseBadRequest, HttpResponseForbi
 class TestIndeedLoginView(TemplateView):
     template_name = 'test/indee_auth.html'
 
+    # def get(self, request, *args, **kwargs):
+    #     print(request.COOKIES, 3500)
+    #     return HttpResponseBadRequest(content="DFail")
+
 
 class TestIndeedView(TemplateView):
     template_name = 'test/indee_main.html'
