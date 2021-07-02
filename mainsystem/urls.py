@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 
 from mainsystem.views.startpage import MainView
 from mainsystem.views.testview.testpage import (TestView, TestFormView, TestDataSave, OneRedirect, TwoRedirect)
-from mainsystem.views.testview.indee_test import TestIndeedView, TestIndeedLoginView
+from mainsystem.views.testview.indee_test import TestIndeedView, TestIndeedLoginView, TestFormIndeedView
 from mainsystem.views.botworker.create_task import CreateTaskPageView, SaveOrder, RestartOrder
 from mainsystem.views.botworker.get_file import send_file
 from mainsystem.views.apiworker.tasks_result import OrderFail,   OrderSuccess
@@ -59,4 +59,5 @@ urlpatterns = [
     # indeed
     path('testauthpageindeed/', TestIndeedLoginView.as_view(), name="test_indeed_auth"),
     path('testpageindeed/', TestIndeedView.as_view(), name="test_indeed_page"),
+    path('account/login', TestFormIndeedView.as_view(), name="test_indeed_login"),
 ]
