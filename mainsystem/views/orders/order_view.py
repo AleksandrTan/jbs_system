@@ -6,7 +6,7 @@ from mainsystem.models import Order
 
 class OrdersView(BaseAdminView, ListView):
     model = Order
-    paginate_by = 15
+    paginate_by = 5
     template_name = "orders/order_view.html"
     ordering = ["id"]
 
