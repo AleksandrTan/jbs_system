@@ -13,7 +13,7 @@ class RabbitWorker:
 
     def sender(self, data):
         self.channel.queue_declare(queue=config.QUEUE_NAME)
-        self.channel.basic_publish(exchange='', routing_key='target', body=data)
+        self.channel.basic_publish(exchange='', routing_key=config.QUEUE_NAME, body=data)
         print(" [x] Sent 'Hello World 1!'")
         self.channel.close()
         self.connection.close()

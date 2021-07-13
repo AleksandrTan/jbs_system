@@ -95,8 +95,8 @@ class RestartOrder(SaveOrder):
     """
     Restart order, send task in RabbitMQ
     """
-
     def get(self, request, *args, **kwargs):
+        print(3500)
         order = OrderWork.get_single_order(kwargs["pk"])
         if order["status"]:
             # send message task for worker in RabbitMQ

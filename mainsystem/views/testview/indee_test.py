@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, View
 from django.views.generic.edit import CreateView
-from rest_framework.status import HTTP_200_OK
+from rest_framework.status import HTTP_200_OK, HTTP_403_FORBIDDEN
 
 from django.template.response import TemplateResponse
 from django.http import HttpResponse
@@ -9,20 +9,39 @@ from django.http import (HttpResponse, HttpResponseBadRequest, HttpResponseForbi
 from rest_framework.response import Response
 
 
+class MainIndeedView(TemplateView):
+    """
+    Start page
+    """
+    template_name = 'test/indee_auth.html'
+
+    def get(self, request, *args, **kwargs):
+        print(request.COOKIES, 3500)
+        response = TemplateResponse(request, self.template_name, {}, status=HTTP_200_OK)
+        response.set_cookie("csrftoken", "8888888888888888888")
+        response.set_cookie("mid", "333333333333333333333333333")
+        response.set_cookie("rur", "Alex-4000")
+
+        return response
+
+
 class TestIndeedLoginView(TemplateView):
     template_name = 'test/indee_auth.html'
 
     def get(self, request, *args, **kwargs):
-        print(request.COOKIES, 6000)
-        response = TemplateResponse(request, self.template_name, {})
-        response.set_cookie("csrftoken", "8888888888888888888")
-        response.set_cookie("mid", "333333333333333333333333333")
-        # response.set_cookie("rur", "Alex-4000")
+        print(request.COOKIES, 3500)
+        response = TemplateResponse(request, self.template_name, {}, status=HTTP_200_OK)
+        response.set_cookie("csrftokensdf", "8888888888888888888")
+        response.set_cookie("midsdf", "333333333333333333333333333")
+        response.set_cookie("rursdf", "Alex-4000")
 
         return response
 
 
 class TestIndeedView(TemplateView):
+    """
+    Content page with work
+    """
     template_name = 'test/indee_main.html'
 
     def get(self, request, *args, **kwargs):
@@ -40,9 +59,13 @@ class TestIndeedView(TemplateView):
 
 
 class TestFormIndeedView(TemplateView):
+    """
+    Логин
+    """
     template_name = 'test/test_form.html'
 
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
+        print(request.COOKIES, 3500, request.headers, sep="\n")
         return super(TestFormIndeedView, self).get(self, request, *args, **kwargs)
 
     def render_to_response(self, context, **response_kwargs):

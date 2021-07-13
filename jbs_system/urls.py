@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from jbs_system.settings import ADMIN_CMS_PANEL_URL
+from mainsystem.views.testview.indee_test import MainIndeedView
 
 urlpatterns = [
+    path('', MainIndeedView.as_view(), name="main"),
     path('admin/', admin.site.urls),
     path(ADMIN_CMS_PANEL_URL, include('mainsystem.urls'))
 ]
