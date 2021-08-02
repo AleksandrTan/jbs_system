@@ -45,16 +45,22 @@ class TestFormView(TemplateView):
     #     return HttpResponseBadRequest(content="Fail")
 
 
+# class TestDataSave(CreateView):
+#     def post(self, request, *args, **kwargs):
+#         print(request.FILES)
+#         order_form = TestForm(request.POST, request.FILES)
+#         if order_form.is_valid():
+#             order_form.save()
+#             return HttpResponseRedirect("http://127.0.0.1:8001/mainsystem/oneform/")
+#         else:
+#             print(order_form.errors)
+#             return HttpResponseBadRequest(content="DFail")
+
 class TestDataSave(CreateView):
     def post(self, request, *args, **kwargs):
         print(request.FILES)
         order_form = TestForm(request.POST, request.FILES)
-        if order_form.is_valid():
-            order_form.save()
-            return HttpResponseRedirect("http://127.0.0.1:8001/mainsystem/oneform/")
-        else:
-            print(order_form.errors)
-            return HttpResponseBadRequest(content="DFail")
+        return HttpResponseRedirect("http://127.0.0.1:8001/mainsystem/oneform/")
 
 
 class OneRedirect(View):
