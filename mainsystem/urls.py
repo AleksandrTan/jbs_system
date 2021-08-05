@@ -2,7 +2,8 @@ from django.urls import path, include, re_path
 from django.contrib.auth import views as auth_views
 
 from mainsystem.views.startpage import MainView
-from mainsystem.views.testview.testpage import (TestView, TestFormView, TestDataSave, OneRedirect, TwoRedirect)
+from mainsystem.views.testview.testpage import (TestView, TestFormView, TestDataSave, OneRedirect, TwoRedirect,
+                                                PaginateLink)
 from mainsystem.views.testview.indee_test import TestIndeedView, TestIndeedLoginView, TestFormIndeedView
 from mainsystem.views.testview.glass_test import MainGlassView
 from mainsystem.views.botworker.create_task import CreateTaskPageView, SaveOrder, RestartOrder
@@ -57,6 +58,7 @@ urlpatterns = [
     path('apply/j2r1zp6g5s3b9nk4h73/submit', TestDataSave.as_view(), name="save_form"),
     path('oneform/', OneRedirect.as_view(), name="one_form"),
     path('twoform/', TwoRedirect.as_view(), name="two_form"),
+    path('paginate/', PaginateLink.as_view(), name="paginate"),
     # indeed
     path('testauthpageindeed/', TestIndeedLoginView.as_view(), name="test_indeed_auth"),
     path('testpageindeed/', TestIndeedView.as_view(), name="test_indeed_page"),

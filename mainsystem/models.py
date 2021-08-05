@@ -61,3 +61,12 @@ class Settings(models.Model):
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
+
+class Admins(models.Model):
+    lastname = models.CharField(max_length=500)
+    email = models.CharField(max_length=500)
+    password = models.BooleanField(default=False)
+    firstname = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    update_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
