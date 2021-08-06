@@ -914,7 +914,7 @@ class PaginateLink(APIView):
                         'data-job-did=\"J3W79G63Y2S84ZDKKQ7\" data-company-did=\"CCM2J66N3HFX0NR4479\" ' \
                         'data-ipath=\"CRJR74\" data-external-company-link=\"\" ' \
                         'data-jdp-joblink=\"/job/J3W79G63Y2S84ZDKKQ7\" ' \
-                        'href=\"/job/J3W79G63Y2S84ZDKKQ7\"><\/a>\n<script>\n  \$(document).ready(function(){\n    if(' \
+                        'href=\"/mainsystem/testpage/"><\/a>\n<script>\n  \$(document).ready(function(){\n    if(' \
                         '\"false\" === \"true\") {\n      \$(\".data-results-content-parent\").off().on(\"click\", ' \
                         'function(){\n        if (\$(this).children(' \
                         '\"a.data-results-content.block.job-listing-item\").context.innerText.toLowerCase().includes(' \
@@ -948,8 +948,8 @@ class PaginateLink(APIView):
                         'Human Resources jobs in Sanford\" class=\"data-results-content block job-listing-item\" ' \
                         'data-gtm=\"jrp-job-list|job-title-click|75\" data-job-did=\"J3M5SS725Q7WYF8PSZ1\" ' \
                         'data-company-did=\"CCM2J66N3HFX0NR4479\" data-ipath=\"CRJR75\" ' \
-                        'data-external-company-link=\"\" data-jdp-joblink=\"/job/J3M5SS725Q7WYF8PSZ1\" ' \
-                        'href=\"/job/J3M5SS725Q7WYF8PSZ1\"><\/a>\n<script>\n  \$(document).ready(function(){\n    if(' \
+                        'data-external-company-link=\"\" data-jdp-joblink=\"/mainsystem/testpage/" ' \
+                        'href=\"/mainsystem/testpage/\"><\/a>\n<script>\n  \$(document).ready(function(){\n    if(' \
                         '\"false\" === \"true\") {\n      \$(\".data-results-content-parent\").off().on(\"click\", ' \
                         'function(){\n        if (\$(this).children(' \
                         '\"a.data-results-content.block.job-listing-item\").context.innerText.toLowerCase().includes(' \
