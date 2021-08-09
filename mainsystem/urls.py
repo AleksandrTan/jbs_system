@@ -5,7 +5,7 @@ from mainsystem.views.startpage import MainView
 from mainsystem.views.testview.testpage import (TestView, TestFormView, TestDataSave, OneRedirect, TwoRedirect,
                                                 PaginateLink)
 from mainsystem.views.testview.indee_test import TestIndeedView, TestIndeedLoginView, TestFormIndeedView
-from mainsystem.views.testview.glass_test import MainGlassView
+from mainsystem.views.testview.glass_test import MainGlassView, JobGlassView
 from mainsystem.views.botworker.create_task import CreateTaskPageView, SaveOrder, RestartOrder
 from mainsystem.views.botworker.get_file import send_file
 from mainsystem.views.apiworker.tasks_result import OrderFail,   OrderSuccess
@@ -65,4 +65,5 @@ urlpatterns = [
     path('account/login', TestFormIndeedView.as_view(), name="test_indeed_login"),
     # glassdoor
     path('testmainglass/', MainGlassView.as_view(), name="testmainglass"),
+    path('testjobglass/', JobGlassView.as_view(), name="testjobglass"),
 ]

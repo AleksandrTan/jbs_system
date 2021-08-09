@@ -21,3 +21,23 @@ class MainGlassView(TemplateView):
         response.set_cookie("___csrftoken", "8888888888888888888")
 
         return response
+
+
+class JobGlassView(TemplateView):
+    """
+    Start page
+    """
+    template_name = 'test/glass_job_link.html'
+    # template_name = 'test/indee_main.html'
+
+    def get(self, request, *args, **kwargs):
+        print(request.COOKIES, 3500)
+        response = TemplateResponse(request, self.template_name, {}, status=HTTP_200_OK)
+        response.set_cookie("csrftoken", "8888888888888888888")
+        response.set_cookie("mid", "333333333333333333333333333")
+        response.set_cookie("rur", "Alex-4000")
+        response.set_cookie("_csrftoken", "8888888888888888888")
+        response.set_cookie("__csrftoken", "8888888888888888888")
+        response.set_cookie("___csrftoken", "8888888888888888888")
+
+        return response
