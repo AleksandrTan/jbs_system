@@ -745,11 +745,8 @@ slovo = "\n<div class=\'data-results-content-parent relative\'>\n<a class=\"data
         "document).find(\'.data-results-content-parent.partner-job\')[0]\n      \$(\'<div class=\"pt10 pb10 " \
         "partner-label\">Partner Jobs<\/div>\').insertBefore(partnerContainer)\n    }\n  })\n<\/script>\n<\/div>\n "
 
-result = re.findall(r'"/job/.*"\s', slovo)
-url = "http://127.0.0.1:8001/mainsystem/paginate/"
-data = requests.get(url)
-# res1 = re.findall(r'append\(.*\);', data.text)
-result1 = re.findall(r'"/job/.{19}\\"\s',  data.text)
-print(data.status_code)
-print(result1[0][1:-3])
-print(result1, len(result1))
+from urllib.parse import urlencode
+
+data = {'name': 'Desmond Lua', 'age': 40}
+query_string = urlencode(data)
+print("http://sefsf/sdf/" + "?" + query_string)
