@@ -27,7 +27,7 @@ class JobGlassView(TemplateView):
     """
     Start page
     """
-    template_name = 'test/glass_job_link.html'
+    template_name = 'test/glass_job_link1.html'
     # template_name = 'test/indee_main.html'
 
     def get(self, request, *args, **kwargs):

@@ -1,5 +1,6 @@
 import re
 import requests
+
 slovo = "\n<div class=\'data-results-content-parent relative\'>\n<a class=\"data-results-save-job " \
         "saved-job-j2n6cn78lyd6vqhh5tr\" aria-label=\"Save this Executive Director job\" " \
         "data-saved-jobdid=\"https://www.careerbuilder.com/user/sign-in?next=https://www.careerbuilder.com/job" \
@@ -750,3 +751,24 @@ from urllib.parse import urlencode
 data = {'name': 'Desmond Lua', 'age': 40}
 query_string = urlencode(data)
 print("http://sefsf/sdf/" + "?" + query_string)
+
+import string
+import random
+
+
+def id_generator(size=16, chars=string.ascii_lowercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+
+print(id_generator())
+
+link = "https://apply.indeed.com/indeedapply/xpc?v=5#%7B%22cn%22:%22XJIdvFARVu%22," \
+       "%22ppu%22:%22https://www.glassdoor.com/static/img/banners/default-ei-banner.jpg%22," \
+       "%22lpu%22:%22https://apply.indeed.com/robots.txt%22,%22setupms%22:1628663613111,%22preload%22:true," \
+       "%22iaUid%22:%221fcpul043r2ae800%22," \
+       "%22parentURL%22:%22https://www.glassdoor.com/job-listing/director-of-human-resources-st-patrick-s-manor-and" \
+       "-carmel-terrace-JV_IC1154571_KO0,27_KE28," \
+       "65.htm?jl=4134528688&pos=106&ao=1044077&s=58&guid=0000017b33e6bb1590d623ef2a3eeb89&src=GD_JOB_AD&t=SR&vt=w&ea" \
+       "=1&cs=1_911a65ac&cb=1628663364772&jobListingId=4134528688&ctt=1628663609882%22%7D "
+results = re.search(r'iaUid%22:%22(.*?)%22',  link)
+print(results.group(1))
