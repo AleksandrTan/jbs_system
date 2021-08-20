@@ -46,7 +46,7 @@ class FormJobGlassView(TemplateView):
     """
     GET Form page
     """
-    template_name = 'test/glass_form_link.html'
+    template_name = 'test/glass_form_link1.html'
 
     def get(self, request, *args, **kwargs):
         print(request.COOKIES, 3500)
